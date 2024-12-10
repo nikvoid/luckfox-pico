@@ -42,6 +42,7 @@ part_realdev=$(realpath $part_dev)
 if [ ! -d $mountpt ]; then
         if [ "$mountpt" = "IGNORE" -a "sd" = "$bootmedium" ];then
                 if [ "$root_dev" = "$part_realdev" ];then
+			mount -o remount,rw /
                         resize2fs $part_dev
                 fi
                 return 0;
