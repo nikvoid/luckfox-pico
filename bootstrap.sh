@@ -22,6 +22,7 @@ apk del -r shadow
 # Install SSH
 apk add openssh
 rc-update add sshd default
+chown 0:0 /var/empty
 
 # Extra stuff
 apk add mtd-utils-ubi
