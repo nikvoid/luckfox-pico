@@ -45,6 +45,8 @@ if echo "$DEVICE_NAME" | grep -q "-sd"; then
 	echo "export RK_PARTITION_CMD_IN_ENV=\"32K(env),512K@32K(idblock),256K(uboot),32M(boot),512M(oem),256M(userdata),30G(rootfs)\"" >> .BoardConfig.mk
 fi
 
+cat .BoardConfig.mk
+
 # build sysdrv - rootfs
 ./build.sh uboot
 ./build.sh kernel
