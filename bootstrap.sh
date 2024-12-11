@@ -28,6 +28,12 @@ apk add mtd-utils-ubi
 apk add bottom
 apk add neofetch
 apk add e2fsprogs-extra
+apk add openntpd
+
+rc-update add openntpd
+
+# make directories
+mkdir /var/run
 
 # Clear apk cache
 rm -rf /var/cache/apk/*
