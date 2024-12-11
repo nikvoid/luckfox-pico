@@ -40,8 +40,9 @@ mountpt=$2
 part_fstype=$3
 part_realdev=$(realpath $part_dev)
 if [ ! -d $mountpt ]; then
-        if [ "$mountpt" = "IGNORE" -a "emmc" = "$bootmedium" ];then
+        if [ "$mountpt" = "IGNORE" -a "sd" = "$bootmedium" ];then
                 if [ "$root_dev" = "$part_realdev" ];then
+			mount -o remount,rw /
                         resize2fs $part_dev
                 fi
                 return 0;
@@ -168,9 +169,13 @@ case $bootmedium in
 esac
 fi
 }
+case $bootmedium in
+   sd) fstype=ext4 ;;
+   mtd) fstype=ubifs ;;
+esac
 case $1 in start) linkdev;
-mount_part rootfs IGNORE ubifs ;
-mount_part oem /oem ubifs ;
-mount_part userdata /userdata ubifs ;
+mount_part rootfs IGNORE $fstype ;
+mount_part oem /oem $fstype ;
+mount_part userdata /userdata $fstype ;
 ;; linkdev) linkdev ;
 ;; stop) printf stop $0 finished\n ;; *) echo Usage: $0 {start|stop} exit 1 ;; esac
