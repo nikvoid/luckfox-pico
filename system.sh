@@ -40,6 +40,11 @@ ls -la
 echo "export RK_CUSTOM_ROOTFS=../sysdrv/custom_rootfs/$ROOTFS_NAME" >> .BoardConfig.mk
 echo "export RK_BOOTARGS_CMA_SIZE=\"1M\"" >> .BoardConfig.mk
 
+#change size on SD
+if echo "$DEVICE_NAME" | grep -q "-sd"; then
+	echo "export RK_PARTITION_CMD_IN_ENV=\"32K(env),512K@32K(idblock),256K(uboot),32M(boot),512M(oem),256M(userdata),30G(rootfs)\"" >> .BoardConfig.mk
+fi
+
 # build sysdrv - rootfs
 ./build.sh uboot
 ./build.sh kernel
