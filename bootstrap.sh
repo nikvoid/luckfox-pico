@@ -32,12 +32,9 @@ apk add openntpd
 
 rc-update add openntpd
 
-# make directories
-mkdir /var/run
-
 # Clear apk cache
 rm -rf /var/cache/apk/*
 
 # Packaging rootfs
-for d in bin etc lib sbin usr; do tar c "$d" | tar x -C /extrootfs; done
-for dir in dev proc root run sys var oem userdata; do mkdir /extrootfs/${dir}; done
+for d in bin etc lib sbin usr var; do tar c "$d" | tar x -C /extrootfs; done
+for dir in dev proc root run sys oem userdata; do mkdir /extrootfs/${dir}; done
