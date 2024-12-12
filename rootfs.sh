@@ -49,9 +49,12 @@ overlay() {
   sed -i -e "s/{TTY_PORT}/$TTY_PORT/g" "$OVERLAY_WORKSPACE/etc/inittab"
 
   chown -R 0:0 $OVERLAY_WORKSPACE
+  echo "ARH DEBUG: ls -la $OVERLAY_WORKSPACE"
+  ls -la $OVERLAY_WORKSPACE
   rsync -a "$OVERLAY_WORKSPACE/" "$ROOTFS_WORKSPACE_MNT/"
   rm -rf "$OVERLAY_WORKSPACE"
-
+  echo "ARH DEBUG: ls -la $ROOTFS_WORKSPACE_MNT"
+  ls -la $ROOTFS_WORKSPACE_MNT
   echo "Include /etc/ssh/sshd_config.d/*.conf" >> \
     "$ROOTFS_WORKSPACE_MNT/etc/ssh/sshd_config"
 
