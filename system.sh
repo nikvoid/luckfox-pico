@@ -34,8 +34,7 @@ case $DEVICE_NAME in
     exit 1
     ;;
 esac
-pwd
-ls -la
+
 #echo "$DEVICE_ID" | ./build.sh lunch
 echo "export RK_CUSTOM_ROOTFS=../sysdrv/custom_rootfs/$ROOTFS_NAME" >> .BoardConfig.mk
 echo "export RK_BOOTARGS_CMA_SIZE=\"1M\"" >> .BoardConfig.mk
