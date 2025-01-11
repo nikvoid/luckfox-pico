@@ -4,7 +4,7 @@ ROOTFS_FILE="rootfs-alpine.tar.gz"
 
 ROOTFS_WORKSPACE_NAME="rootfs-alpine"
 ROOTFS_WORKSPACE_FILE="$ROOTFS_WORKSPACE_NAME.ext4"
-ROOTFS_WORKSPACE_MNT="/tmp/$ROOTFS_WORKSPACE_NAME/"
+ROOTFS_WORKSPACE_MNT="./$ROOTFS_WORKSPACE_NAME/"
 
 rootfs_workspace_drop() {
   umount -R "$ROOTFS_WORKSPACE_MNT"
@@ -12,9 +12,9 @@ rootfs_workspace_drop() {
 }
 rootfs_workspace_new() {
   mkdir -p "$ROOTFS_WORKSPACE_MNT"
-  dd if=/dev/zero of="$ROOTFS_WORKSPACE_FILE" bs=1M count=100
-  mkfs.ext4 "$ROOTFS_WORKSPACE_FILE"
-  mount "$ROOTFS_WORKSPACE_FILE" "$ROOTFS_WORKSPACE_MNT"
+  # dd if=/dev/zero of="$ROOTFS_WORKSPACE_FILE" bs=1M count=100
+  # mkfs.ext4 "$ROOTFS_WORKSPACE_FILE"
+  # mount "$ROOTFS_WORKSPACE_FILE" "$ROOTFS_WORKSPACE_MNT"
 }
 
 # Create and mount rootfs
@@ -74,7 +74,6 @@ popd || exit
 
 rm -rf "$OUTPUT_DIR"
 mkdir -p "$OUTPUT_DIR"
-mv "$ROOTFS_WORKSPACE_MNT/$ROOTFS_FILE" "$OUTPUT_DIR/"
-
+mv "$ROOTFS_WORKSPACE_MNT/$ROOTFS_FILE" .
 # Cleanup
-rootfs_workspace_drop
+# rootfs_workspace_drop
