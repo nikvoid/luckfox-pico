@@ -36,8 +36,12 @@ rc-update add openntpd default
 # STLink flash utils
 apk add stlink
 
-# Helix
+# Helix and screen
 apk add helix
+apk add screen
+
+# Terminal
+apk add picocom
 
 # Clear apk cache
 rm -rf /var/cache/apk/*
