@@ -43,6 +43,11 @@ apk add screen
 # Terminal
 apk add picocom
 
+# PLC
+apk add open-plc-utils
+apk add tcpdump
+apk add bridge
+
 # Clear apk cache
 rm -rf /var/cache/apk/*
 

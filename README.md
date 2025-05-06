@@ -57,3 +57,7 @@ Just fork this repo and trigger Github Actions after you made your changes!
 For example,
 * To add software packages, edit `bootstrap.sh`.
 * To change files in the system image, edit `overlay/`.
+
+## Modify files
+DTS: `/home/nv/luckfox-pico/sdk/sysdrv/source/kernel/arch/arm/boot/dts/rv1106g-luckfox-pico-max.dts`
+Kernel cfg: `/home/nv/luckfox-pico/sdk/sysdrv/source/kernel/arch/arm/configs/luckfox_rv1106_linux_defconfig`

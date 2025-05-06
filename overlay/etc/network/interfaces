@@ -1,10 +1,35 @@
 auto lo
 iface lo inet loopback
+auto eth1
 auto eth0
-iface eth0 inet dhcp
-    udhcpc_opts -t 1
-auto usb0
-iface usb0 inet static
-    address 172.32.0.93
-    netmask 255.255.255.0
-    gateway 172.32.0.1
+auto br0
+
+# For bridge
+iface eth0 inet manual
+iface eth1 inet manual
+# iface br0 inet dhcp
+iface br0 inet static
+   address 192.168.54.4
+   network 192.168.54.0
+   bridge-ports eth0 eth1
+   bridge-stp 0
+    # pre-up echo 0 > /proc/sys/net/bridge/bridge-nf-call-arptables
+    # pre-up echo 0 > /proc/sys/net/bridge/bridge-nf-call-iptables
+    # pre-up echo 0 > /proc/sys/net/bridge/bridge-nf-call-ip6tables
+
+# For DHCP conn
+# iface eth1 inet dhcp
+
+# For direct conn
+# iface eth1 inet static
+#     address 192.168.54.3
+#     network 192.168.54.0
+#     netmask 255.255.255.0
+#     udhcpc_opts -t 1
+
+# USB 
+# auto usb0
+# iface usb0 inet static
+#     address 172.32.0.93
+#     netmask 255.255.255.0
+#     gateway 172.32.0.1
